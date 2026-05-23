@@ -1,16 +1,67 @@
-# React + Vite
+# Buscador Avanzado de Películas 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Buscador de películas con conexión a la **API de TMDB (The Movie Database)**. Construido con **React 19**, **Vite 8**, **Tailwind CSS 4** y **TanStack React Query**.
 
-Currently, two official plugins are available:
+## ✨ Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Búsqueda en tiempo real** — Resultados mientras escribes con debounce de 300ms.
+- **API de TMDB** — Consulta la base de datos de más de 500,000 películas en español.
+- **Paginación inteligente** — Navegación entre páginas con hasta 500 resultados.
+- **TanStack React Query** — Caché, stale-time y refetch automático con retry.
+- **Debounce** — Evita llamadas excesivas a la API mientras el usuario escribe.
+- **Estados completos** — Pantallas de carga (skeleton), vacío, error con reintento y estado inicial.
+- **Tailwind CSS 4** — Diseño moderno, responsive y modo oscuro.
+- **Posters dinámicos** — Imágenes desde el CDN de TMDB con placeholder cuando no hay poster.
+- **Valoración** — Rating ★ mostrado en cada tarjeta de película.
+- **Responsive grid** — De 2 a 6 columnas según el tamaño de pantalla.
+- **React Query Devtools** — Herramientas de depuración disponibles en desarrollo.
 
-## React Compiler
+## 🛠️ Tecnologías y Herramientas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Herramienta          | Versión | Propósito                              |
+|----------------------|---------|----------------------------------------|
+| React                | 19      | UI y lógica de componentes             |
+| Vite                 | 8       | Bundler y dev server rápido            |
+| Tailwind CSS         | 4       | Estilos utilitarios (modo oscuro)      |
+| TanStack React Query | 5       | Caché, fetching y estado asíncrono     |
+| TMDB API             | 3       | Fuente de datos de películas           |
+| ESLint               | 10      | Linter de código                       |
+| @vitejs/plugin-react | 6       | Integración de React con Vite          |
 
-## Expanding the ESLint configuration
+## 🔑 Configuración
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Crea un archivo `.env` en la raíz con tu clave de la API de TMDB:
+
+```env
+VITE_TMDB_API_KEY=tu_api_key_aqui
+```
+
+Puedes obtener una clave gratuita en [https://www.themoviedb.org/settings/api](https://www.themoviedb.org/settings/api).
+
+## 🚀 Scripts
+
+```bash
+npm run dev      # Inicia el servidor de desarrollo
+npm run build    # Compila para producción
+npm run preview  # Previsualiza la build
+npm run lint     # Ejecuta ESLint
+```
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── components/
+│   ├── SearchBar.jsx       # Campo de búsqueda con icono
+│   ├── MovieCard.jsx       # Tarjeta de película (poster, título, año, rating)
+│   ├── Pagination.jsx      # Paginación con páginas inteligentes
+│   ├── LoadingSkeleton.jsx # Esqueleto animado de carga
+│   ├── EmptyState.jsx      # Estado vacío (inicial y sin resultados)
+│   └── ErrorState.jsx      # Estado de error con botón de reintento
+├── hooks/
+│   ├── useMovieSearch.js   # Hook de consulta a TMDB con React Query
+│   └── useDebounce.js      # Hook de debounce genérico
+├── App.jsx                 # Componente principal con lógica de búsqueda
+├── main.jsx                # Renderizado con QueryClientProvider
+└── index.css               # Estilos base Tailwind
+```
